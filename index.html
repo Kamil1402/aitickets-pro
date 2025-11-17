@@ -194,4 +194,49 @@
 
   <button type="submit">Wyślij</button>
 </form>
+<form action="https://formsubmit.co/aiticketspro@gmail.com" method="POST">
+  <!-- Wyłącz Captchę -->
+  <input type="hidden" name="_captcha" value="false">
+  
+  <!-- Przekierowanie po wysłaniu -->
+  <input type="hidden" name="_next" value="https://kamil1402.github.io/aitickets-pro/dziekuje.html">
+
+  <h2>Formularz zgłoszeniowy AI Tickets (B2B)</h2>
+
+  <label for="company">Nazwa firmy:</label>
+  <input type="text" id="company" name="company" placeholder="Np. ACME Sp. z o.o." required>
+
+  <label for="name">Imię i nazwisko kontaktowe:</label>
+  <input type="text" id="name" name="name" placeholder="Np. Jan Kowalski" required>
+
+  <label for="email">Email kontaktowy:</label>
+  <input type="email" id="email" name="email" placeholder="Np. jan.kowalski@acme.com" required>
+
+  <label for="phone">Telefon kontaktowy:</label>
+  <input type="tel" id="phone" name="phone" placeholder="Np. +48 600 123 456" required>
+
+  <label for="subject">Temat zgłoszenia:</label>
+  <input type="text" id="subject" name="subject" placeholder="Np. Problem z integracją API" required>
+
+  <label for="message">Opis problemu / zgłoszenia:</label>
+  <textarea id="message" name="message" rows="5" placeholder="Opisz problem szczegółowo" required></textarea>
+
+  <label for="priority">Priorytet zgłoszenia:</label>
+  <select id="priority" name="priority" required>
+    <option value="">Wybierz priorytet</option>
+    <option value="niski">Niski</option>
+    <option value="średni">Średni</option>
+    <option value="wysoki">Wysoki</option>
+  </select>
+
+  <label for="category">Kategoria zgłoszenia:</label>
+  <select id="category" name="category" required>
+    <option value="">Wybierz kategorię</option>
+    <option value="techniczne">Techniczne</option>
+    <option value="integracje">Integracje</option>
+    <option value="inne">Inne</option>
+  </select>
+
+  <button type="submit">Wyślij zgłoszenie</button>
+</form>
 
