@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Tickets Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; }
+    h1 { text-align: center; }
+    #search { width: 300px; padding: 8px; margin-bottom: 20px; }
+    .ticket { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    .meta { font-size: 12px; color: #555; }
+    .button { padding: 6px 10px; background: black; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>AI Tickets Dashboard</h1>
+  <input id="search" type="text" placeholder="Szukaj ticketów..." oninput="renderTickets()" />
+  <div id="tickets"></div>
+
+  <script>
+    let tickets = [];
+
+    async function loadTickets() {
+      const res = await fetch('tickets_500.json');
+      tickets = await res.json();
+      renderTickets();
+    }
+
+    function renderTickets() {
+      const q = document.getElementById('search').value.toLowerCase();
+      const container = document.getElementById('tickets');
+      container.innerHTML = '';
+
+      tickets
+        .filter(t => t.subject.toLowerCase().includes(q) || t.message.toLowerCase().includes(q))
+        .slice(0, 50)
+        .forEach(t => {
+          const div = document.createElement('div');
+          div.className = 'ticket';
+          div.innerHTML = `
+            <h3>${t.subject}</h3>
+            <p>${t.message}</p>
+            <p class="meta">
+              Firma: <strong>${t.company}</strong><br>
+              Priorytet: ${t.priority} | Kategoria: ${t.category}<br>
+              Branża: ${t.industry}<br>
+              Data: ${t.created_at}<br>
+            </p>
+            <button class="button" onclick='trainAI(${JSON.stringify(t)})'>Ucz AI na tym tickecie</button>
+          `;
+          container.appendChild(div);
+        });
+    }
+
+    function trainAI(ticket) {
+      alert("Symulacja: AI nauczyło się ticketu \n\n" + ticket.subject);
+    }
+
+    loadTickets();
+  </script>
+</body>
+</html>
