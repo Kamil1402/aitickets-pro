@@ -62,3 +62,8 @@
   </script>
 </body>
 </html>
+function trainAIHandler(event) {
+  const ticketDiv = event.target.closest('.ticket');
+  const subject = ticketDiv.querySelector('h3').innerText;
+  alert("Simulation: AI has learned this ticket\n\n" + subject);
+}
